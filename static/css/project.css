@@ -1,0 +1,198 @@
+#ContainerBtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;   
+}
+.btn{
+    margin: 10px;
+}
+.card{
+    top: 40px;
+    margin-left: 10px;
+    display: flex;
+    float: left;
+}
+
+.card {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+}
+.card-img-top {
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensure images cover the fixed height */
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-title, .card-text {
+    margin-bottom: 15px;
+}
+
+/* body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+} */
+
+h4 {
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+#h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.search-form {
+    background-color: #ffffff;
+    border: 2px solid #ddd;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.search-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.search-form input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #868e96;
+}
+
+@media (max-width: 600px) {
+    .search-form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .search-form input[type="text"] {
+        width: calc(100% - 20px);
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .search-form input[type="submit"] {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* -------Photo Capture and Save --------- */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+#save_name_container {
+    display: none;
+}
+
+.modal-body form label {
+    display: flex;
+    align-items: center;
+}
+
+.modal-body form label input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* ---------Generate Image CSS ------------ */
+iframe {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 80%;
+    height: 500px;
+}
+#generateimagebtn{
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#generateimagebtn:hover {
+    background: #0056b3;
+}

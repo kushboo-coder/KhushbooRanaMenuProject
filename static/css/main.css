@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lexend+Deca:wght@100;200;300;400;500;600;700&family=Montserrat:wght@400;700&family=Mulish:wght@300&family=Poppins:wght@300;400;600&family=Urbanist:wght@300;400;600;700;800;900&display=swap');
+
+@font-face {
+    font-family: The Suavita;
+    src: url(./the-suavity.regular.otf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bs-dark-color: #1a1d20;
+    --bs-dark-primary: #1c1c1c;
+    --bs-main-color: #fff;
+    --bs-primary-color: #c6c6c6;
+    --secondary-color: #29a9fd;
+    --bs-supporting-color: #C850C0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Lexend Deca', sans-serif;
+    color: var(--bs-dark-color);
+}
+
+.social {
+    margin-top: 20px;
+    margin-left: 161px;
+    padding-left: 15px;
+}
+
+.social:hover {
+    margin-right: 20px;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social a {
+    margin-top: 20px;
+    padding-left: 15px;
+}
+
+.heading h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    line-height: 3rem;
+    font-weight: 600;
+    font-size: 3.4rem;
+}
+
+p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--bs-dark-color);
+    letter-spacing: 0.07rem;
+    line-height: 1.55rem;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+#logo-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+button, a {
+    font-size: 1.15rem !important;
+    letter-spacing: 0.03rem;
+    word-spacing: .1rem;
+}
+
+#button {
+    width: 20vw;
+    margin-top: 20px;
+    margin-left: 120px;
+}
+
+#button:hover {
+    width: 25vw;
+    background-color: black;
+    color: white;
+}
+
+.bg-main {
+    height: 80vh;
+    position: relative;
+}
+
+.bg-color {
+    background-color: var(--bs-dark-primary);
+}
+
+.bg-theme {
+    color: var(--bs-supporting-color);
+    background-image: none !important;
+}
+
+.hero-section .container {
+    display: grid;
+    place-items: center;
+    height: inherit;
+}
+
+.hero-section h1 {
+    font-size: 3.4rem;
+}
+
+.hero-section h1:first-letter {
+    initial-letter: 2;
+    padding-right: .2rem;
+    color: var(--secondary-color);
+}
+
+.hero-video--section {
+    width: 30rem;
+    border-radius: 2rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .hero-video--section {
+        width: 25rem;
+        border-radius: 1rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .hero-section {
+        height: 80vh;
+    }
+
+    .hero-video--section {
+        width: 20rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 998px) {
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    section .common-heading {
+        font-size: 2rem;
+    }
+
+    section .para-width {
+        width: auto;
+    }
+
+    .hero-section {
+        height: 100vh;
+    }
+
+    .navbar-toggler {
+        border-color: var(--bs-main-color);
+    }
+
+    .navbar-toggler-icon {
+        background-color: var(--bs-main-color);
+    }
+
+    #button {
+        width: 230px;
+    }
+}
+
+@media screen and (max-width: 998px) {
+    .navbar-brand {
+        color: var(--bs-main-color) !important;
+    }
+
+    .contact-section .common-title {
+        padding-top: 10rem;
+    }
+
+    .contact-section .form-section {
+        width: 100%;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-video--section {
+        width: 18rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .more-info-section img {
+        display: none;
+    }
+
+    #button {
+        width: 260px;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-video--section {
+        width: 15rem;
+    }
+}
+
+/* Specific styles for Moto G4 */
+@media screen and (max-width: 480px) {
+    .navbar{
+        width: 100%;
+    }
+    .heading h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        line-height: 2.2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+
+    #button {
+        width: 250px;
+        margin-left: 0;
+    }
+
+    .hero-video--section {
+        width: 13rem;
+    }
+
+    .social {
+        margin-left: 10px;
+    }
+
+    .card-box {
+        padding: 15px;
+    }
+
+    .card-box h5 {
+        font-size: 1rem;
+    }
+
+    .card-box p {
+        font-size: 0.85rem;
+    }
+
+    .card-box .btn-primary {
+        font-size: 0.9rem;
+    }
+}
+
+.custom-shape-divider-bottom-1684208460 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1684208460 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1684208460 .shape-fill {
+    fill: var(--bs-main-color);
+}
+
+.common-section {
+    padding: 0 0 9rem 0;
+}
+
+.more-info-section {
+    background-image: linear-gradient(rgba(22,22,22,0.9), rgba(22,22,22,0.9)), url("https://images.pexels.com/photos/316093/pexels-photo-316093.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 6rem 0;
+    overflow: hidden;
+}
+
+.more-info-section .img-section {
+    position: relative;
+}
+
+.more-info-section img {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    max-width: 100%;
+    width: 70%;
+}
+
+@media screen and (max-width: 1200px) {
+    .more-info-section img {
+        position: absolute;
+        bottom: 10%;
+        top: 0;
+        left: 55%;
+        max-width: 100%;
+        width: 50%;
+        transform: scaleX(1);
+    }
+
+    .para-width {
+        width: 90%;
+    }
+}
+
+.services-section {
+    padding: 6rem 0 3rem 0 !important;
+}
+
+.business-section {
+    padding-top: 3rem;
+}
+
+.btn-primary {
+    background: #1089ff;
+    border: none;
+    outline: none;
+}
+
+.para-width {
+    width: 55%;
+}
+
+#pricing h2 {
+    color: black;
+}
+
+.card-box {
+    position: relative;
+    padding: 25px;
+    margin: 30px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.card-box h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.card-box p {
+    color: #666;
+    margin-top: 10px;
+}
+
+.card-box .btn-primary {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #28a745;
+    transition: background-color 0.3s;
+}
+
+.card-box .btn-primary:hover {
+    background-color: #218838;
+}
+
+.card-box .btn-primary:active {
+    background-color: #1e7e34;
+}
+
+section {
+    padding: 9rem 0;
+}

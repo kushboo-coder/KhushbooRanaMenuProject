@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Service Platform</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+   
+</head>
+<style>
+         #videoFeed img {
+            width: 100%;
+            height: auto;
+        }
+        #capturedImage img {
+            width: 100%;
+            height: auto;
+        }
+        #result {
+            font-weight: bold;
+        }
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video covers the entire screen */
+    z-index: -1; /* Keeps the video behind other content */
+    pointer-events: none; /* Prevents interaction with the video */
+}
+
+        /* Card Styles */
+.custom-card {
+    background: rgba(255, 255, 255, 0.8); /* Transparent background */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(10px); /* Optional: adds a blur effect to the background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+
+.custom-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.custom-card .card-img-top {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.custom-card .card-body {
+    padding: 20px;
+}
+
+.custom-card .card-title {
+    font-size: 1.5rem;
+    color: #007bff; /* Primary Color */
+    margin-bottom: 10px;
+}
+
+.custom-card .card-text {
+    font-size: 1rem;
+    color: #6c757d; /* Secondary Color */
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.custom-card .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.custom-card .btn-primary:hover {
+    background-color: #0056b3; /* Darker shade of primary color */
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-content {
+    animation: fadeInUp 0.6s ease-out;
+}
+/* Container holding the cards */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+@media (min-width: 576px) {
+#result{
+    color: red;
+}
+}
+/* #video {
+            width: 100%;
+            display: none;
+            border: 2px solid #ddd;
+            margin-top: 20px;
+        }
+        #photo {
+            width: 100%;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            display: none;
+        } */
+      
+
+</style>
+<body onload="showAllProjects()">
+    <video autoplay muted loop id="bgVideo">
+        <source src="/static/images/astro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="header" id="header">
+        <nav class="navbar navbar-expand-lg py-4 pt-lg-5 nav-menu" >
+            <div class="container">
+                <div class="signature">
+                    <span class="angle">&lt;</span>
+                    <span style="color: wheat;" id="logo-name">Khushboo Rana</span>
+                    <span class="angle">/&gt;</span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i> <!-- Font Awesome bars icon -->
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="http://127.0.0.1:5502/templates/portfolio.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5502/templates/portfolio.html#skills-section">My Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000/">My Project</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=">Resume</a>
+                        </li>
+                    </ul> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+ <!-- -------------------------Buttons------------------------- -->
+<div class="container" >
+    <h1  class="text-center">Multi-Service Platform</h1>
+    <div id="ContainerBtn" class="row justify-content-center">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-2">
+            <button type="button" class="btn btn-primary w-100" id="allBtn">All</button>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-2">
+            <button id="PythonBtn" type="button" class="btn btn-primary w-100">Python</button>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-2">
+            <button id="MachineLearningBtn" type="button" class="btn btn-primary w-100">Machine Learning</button>
+        </div>
+    </div>
+</div>
+    <div class="container-fluid ">
+        <div class="row">
+            <div id="CallSomeone" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content">
+                <div class="card custom-card" style="width: 25rem;">
+                    <!-- Wrap the image inside an anchor tag with the data-toggle and data-target attributes -->
+                    <a href="#" data-toggle="modal" data-target="#callModal">
+                        <img src="/static/images/klipartz.com.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Call Someone</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="SMS" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#SmsModal">
+                        <img src="/static/images/ch (1).png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Sms on mobile</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="googlequery" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#GoogleTop5Modal">
+                        <img src="/static/images/top.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Google Top 5 Query</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="mailcard" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;" >
+                    <a href="#" data-toggle="modal" data-target="#EmailModal">
+                        <img style="height:20rem;" src="/static/images/em.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Email</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="insta" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#instaModal">
+                        <img src="/static/images/insta.jpg" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Instagram Post</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="facecrop" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#facecropModal">
+                        <img src="/static/images/3d face crop.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Upload Image for Face Detection</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="imagefilter" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#imagefilterModal">
+                        <img src="/static/images/3d filters.png" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Image Filter Application</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="texttospeak" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#textToSpeakModal">
+                        <img src="/static/images/Text-to-Speech-pic.png" class="card-img-top" alt="Text to Speak">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Text to Speak</h5>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <!-- -------------------------------accessory set-------------------------  -->
+            <!-- <div id="sunglassSet" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#SunglassModal">
+                        <img src="/static/images/sunglass.png" class="card-img-top" alt="Sunglass and Hat Set">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Sunglass and Hat Set</h5>
+                        <button class="btn btn-primary" type="button" id="start-camera-button">Start Camera</button>
+                        <div id="video-container">
+                            <video id="video" autoplay></video>
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="capture-button">Capture</button>
+                        <button type="button" class="btn btn-primary" id="apply-accessory-button">Apply Accessory</button>
+                        <button type="button" class="btn btn-primary" id="save-button">Save</button>
+                        <select id="accessory-select">
+                            <option value="hat">Hat</option>
+                            <option value="sunglasses">Sunglasses</option>
+                        </select>
+                    </div>
+                </div>
+            </div> -->
+            
+            <div id="WhatsappMsg" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#WhatsappMsgModal">
+                        <img src="/static/images/whatsapimage.png" class="card-img-top" alt="WhatsApp">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Whatsapp</h5>
+                      
+                    </div>
+                </div>
+            </div>
+            
+            <div id="CustomImg" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left;">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#CustomImgModal">
+                        <img src="/static/images/nn.png" class="card-img-top" alt="Custom Image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Custom Img</h5>
+                      
+                    </div>
+                </div>
+            </div>
+          <!-- Geolocation Card -->
+            <!-- Geolocation Card -->
+            <div id="Geolocation" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content">
+                <div class="card custom-card" style="width: 25rem;">
+                    <a href="#" data-toggle="modal" data-target="#GeolocationModal">
+                        <img src="/static/images/pk.png" class="card-img-top" alt="Custom Image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Geolocation</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="holiProject" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left; ">
+                <div class="card custom-card" style="width: 25rem;">
+
+                <img src="/static/images/holi.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Holi Project</h5>
+                    <p class="card-text">I created a fun and colorful 'Happy Holi' project using HTML, CSS, and JavaScript. It brings the excitement of the festival to life with vibrant animations and interactive elements.
+                    </p>
+                    <a href="https://sachinlunayach.github.io/HoliProject/" class="btn btn-primary">Run Demo</a>
+                </div>
+            </div>
+            </div>
+    
+            <div id="NewYearProject" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left; ">
+                <div class="card custom-card" style="width: 25rem;">
+
+                <img src="/static/images/newyear.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">New Year Project</h5>
+                    <p class="card-text">I created a cheerful 'Happy New Year 2024' project using HTML, CSS, and JavaScript. It features sparkling animations and interactive elements to welcome the new year with joy and excitement.</p>
+                    <a href="https://sachinlunayach.github.io/HN24/" class="btn btn-primary">Run Demo</a>
+                </div>
+            </div>
+            </div>
+            
+            <div id="CubeAnimation" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left; ">
+                <div class="card custom-card" style="width: 25rem;">
+
+                <img src="/static/images/cube.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Cube Animation</h5>
+                    <p class="card-text">I designed a 'Colorful Cube Animation' using HTML, CSS, and JavaScript. The project showcases a dynamic 3D cube with vibrant colors and smooth animations, creating an engaging visual experience.</p>
+                    <a href="https://sachinlunayach.github.io/cubeanimation1/" class="btn btn-primary">Run Demo</a>
+                </div>
+            </div>
+            </div>
+            <div id="Calculator" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left; ">
+                <div class="card custom-card" style="width: 25rem;">
+
+                <img src="/static/images/calculator.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Calculator</h5>
+                    <p class="card-text">I created a simple and efficient calculator using HTML, CSS, and JavaScript. It performs basic arithmetic operations with a clean and user-friendly interface.</p>
+                    <a href="https://sachinlunayach.github.io/calcultor/" class="btn btn-primary">Run Demo</a>
+                </div>
+            </div>
+            </div>
+            <div id="TicTacToe" class="col-lg-4 col-md-4 col-sm-6 mb-4 section-content" style="float: left; ">
+                <div class="card custom-card" style="width: 25rem;">
+
+                <img src="/static/images/tictactoe.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Tic Tac Toe</h5>
+                    <p class="card-text">I created a Tic Tac Toe game by using HTML, CSS, and JavaScript. It is simple game and user-friendly.</p>
+                    <a href=" https://sachinlunayach.github.io/tic-toe/" class="btn btn-primary">Run Demo</a>
+                </div>
+            </div>
+            </div> -->
+           
+
+        </div>
+    </div>
+    <!-- The Modal -->
+   <!-- Call Modal -->
+<!-- The Modal -->
+<!-- Call Modal -->
+<div class="modal fade" id="callModal" tabindex="-1" role="dialog" aria-labelledby="callModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="callModalLabel">Make a Call</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="callForm">
+                    <div class="form-group">
+                        <label for="number">Phone Number</label>
+                        <input type="text" class="form-control" id="number" name="number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="from_number">From Number</label>
+                        <input type="text" class="form-control" id="from_number" name="from_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="delay_minutes">Delay (minutes)</label>
+                        <input type="number" class="form-control" id="delay_minutes" name="delay_minutes" min="0">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="makeCall()">Make Call</button>
+                </form>
+                <!-- Alert Placeholder -->
+                <div id="callAlertPlaceholder" class="alertmsg mt-3 my-3 p-3"></div>
+                <div id="resultCall" class="mt-3"></div>
+            </div>
+             <!-- Modal Footer -->
+             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!-- -----------------------------sms------------------------- -->
+
+<!-- SMS Modal -->
+<div class="modal fade" id="SmsModal">
+    <div class="modal-dialog animated-modal animated-modal">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Sms</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="smsForm">
+                    <div class="form-group">
+                        <label for="number">Phone Number (with country code):</label>
+                        <input type="text" id="number" name="number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" onclick="startDictation('message')">🎤</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="delay_minutes">Delay (in minutes, optional):</label>
+                        <input type="number" class="form-control" id="delay_minutes" name="delay_minutes"
+                            placeholder="Enter delay in minutes (leave empty for immediate)" min="0">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="sendSMS()">Submit</button>
+                </form>
+                <div id="smsAlertPlaceholder" class="alertmsg mt-3"></div>
+                <div id="result" class="mt-3"></div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div id="globalAlertPlaceholder" class="alertmsg"></div> -->
+
+<!-- Email Modal -->
+<div class="modal fade" id="EmailModal">
+    <div class="modal-dialog animated-modal">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Email</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="emailForm">
+                    <div class="form-group">
+                        <label for="to_email">Recipient Email</label>
+                        <input type="email" class="form-control" id="to_email" name="to_email" placeholder="Enter recipient's email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea class="form-control" id="body" name="body" rows="4" placeholder="Enter email body" required></textarea>
+                        <button type="button" class="btn btn-outline-secondary mt-2" onclick="startDictation('body')">🎤</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="delay_seconds">Delay (Seconds)</label>
+                        <input type="number" class="form-control" id="delay_seconds" name="delay_seconds" placeholder="Enter delay in seconds" min="0" value="0">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="sendEmail()">Send Email</button>
+                </form>
+                <div id="emailAlertPlaceholder" class="alertmsg mt-3"></div>
+                <div id="result" class="mt-3"></div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- ------------------------------Google top5---------------------- -->
+ <!-- Google Search Modal -->
+ <div class="modal fade" id="GoogleTop5Modal">
+    <div class="modal-dialog animated-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Google Top 5</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="searchForm">
+                    <div class="form-group">
+                        <label for="query">Search Query:</label>
+                        <input type="text" id="query" name="query" class="form-control" required placeholder="Enter search query...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <div id="searchResults" class="mt-3"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- ---------------------------bing------------------------ -->
+
+    <div class="modal fade" id="BingModal">
+        <div class="modal-dialog animated-modal">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bing</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form action="http://127.0.0.1:5000/search/bing" method="post">
+                        <div class="form-group">
+                            <label for="bing_query">Search Query:</label>
+                            <input type="text" id="bing_query" name="query" class="form-control" required
+                                placeholder="Enter search query...">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ---------------------------------google query--------------------- -->
+    <div class="modal fade" id="SearchGoogleModal">
+        <div class="modal-dialog animated-modal">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Google</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form action="http://127.0.0.1:5000/search/google" method="post">
+                        <div class="form-group">
+                            <label for="goog_query">Search Query:</label>
+                            <input type="text" id="goog_query" name="query" class="form-control" required
+                                placeholder="Enter search query...">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------------------photo capture----------------- -->
+   <!-- Modal for photo capture -->
+   <div class="modal fade" id="CapturePhotoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Photo Capture</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="captureForm">
+                    <div class="form-group">
+                        <label for="camera_ip">IP Webcam Address:</label>
+                        <input type="text" id="camera_ip" name="ip" class="form-control" required placeholder="Enter Your Webcam IP">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="startVideo()">Start Video</button>
+                    <button type="button" class="btn btn-primary" onclick="capturePhoto()">Capture Photo</button>
+                </form>
+                <div id="videoFeed" class="mt-3">
+                    <!-- Image element for streaming -->
+                    <img id="video" src="" style="display:none;">
+                </div>
+                <div id="capturedImage" class="mt-3">
+                    <!-- Captured image will be displayed here -->
+                    <img id="photo" src="" alt="Captured Photo" style="display:none;">
+                </div>
+                <div id="result" class="mt-3"></div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ----------------------------ec2------------------------- -->
+   <!-- EC2 Modal -->
+<div class="modal fade" id="ec2Modal">
+    <div class="modal-dialog animated-modal">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">EC2 Instance Management</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form action="/ec2" method="POST">
+                    <div class="form-group">
+                        <label for="aws_access_key_id">AWS Access Key ID</label>
+                        <input type="text" class="form-control" id="aws_access_key_id" name="aws_access_key_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="aws_secret_access_key">AWS Secret Access Key</label>
+                        <input type="text" class="form-control" id="aws_secret_access_key" name="aws_secret_access_key" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Region</label>
+                        <select class="form-control" id="region" name="region" required>
+                            <!-- Options will be populated by AJAX -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="instance_type">Instance Type</label>
+                        <select class="form-control" id="instance_type" name="instance_type" required>
+                            <!-- Options will be populated by AJAX -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="image_id">Image ID</label>
+                        <select class="form-control" id="image_id" name="image_id" required>
+                            <!-- Options will be populated by AJAX -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="max_count">Max Count</label>
+                        <input type="number" class="form-control" id="max_count" name="max_count" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="min_count">Min Count</label>
+                        <input type="number" class="form-control" id="min_count" name="min_count" min="1" value="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Instance</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- --------------------------------Image Recognition------------------------- -->
+
+              <!-- Modal for Configuration and Image Upload -->
+    <div class="modal fade" id="Image_Recognition" tabindex="-1" role="dialog" aria-labelledby="ImageRecognitionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="ImageRecognitionLabel">Configure AWS and Upload Image</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <!-- AWS Configuration Form -->
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="imageFile">Upload Image</label>
+                            <input type="file" class="form-control-file" id="imageFile" name="imageFile" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload and Analyze</button>
+                    </form>
+                </div>
+
+                
+            </div>
+        </div>
+        <div id="resultimage" class="mt-3"></div>
+    </div>
+         
+ 
+    
+    
+
+
+       <!-- ------------------------instagram post----------------------- -->
+
+<!-- Instagram Post Modal -->
+<div class="modal fade" id="instaModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="card-title">Upload Instagram Post</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="insta-form" action="/insta" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="photo">Upload Photo</label>
+                        <div class="form-group">
+                            <label for="file">Select Image:</label>
+                            <input type="file" id="file" name="file" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="caption">Caption</label>
+                        <input type="text" class="form-control" id="caption" name="caption" placeholder="Enter caption">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post to Instagram</button>
+                </form>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- -------------------------------------face crop----------------------- -->
+    <div class="modal fade" id="facecropModal">
+        <div class="modal-dialog animated-modal">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="card-title">Upload Image for Face Detection</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="upload-form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">Select an image:</label>
+                            <input type="file" class="form-control" id="file" name="file" accept="image/*" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="uploadImage()">Upload</button>
+                        <a id="download-link" class="btn btn-primary" style="display:none;" href="#" download>Download Processed Image</a>
+                    </form>
+                    <div id="result" class="mt-5" style="display:none;">
+                        <h2>Processed Image</h2>
+                        <img id="output-image" class="img-fluid" src="#" alt="Processed Image">
+                        <p id="status-message"></p>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- -----------------------------------image filter------------------------- -->
+
+    <div class="modal fade" id="imagefilterModal">
+        <div class="modal-dialog animated-modal">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="card-title">Image Filter Application</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form action="/uploadfilter" method="post" enctype="multipart/form-data" class="mb-4">
+                        <div class="form-group">
+                            <label for="file">Select Image:</label>
+                            <input type="file" id="file" name="file" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter_color">Select Filter Color:</label>
+                            <select id="filter_color" name="filter_color" class="form-control" required>
+                                <option value="red">Red</option>
+                                <option value="green">Green</option>
+                                <option value="blue">Blue</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload and Apply Filter</button>
+                    </form>
+
+                    <form action="/filterImg" method="post" class="mb-4">
+                        <div class="form-group">
+                            <label for="filter_color_capture">Select Filter Color:</label>
+                            <select id="filter_color_capture" name="filter_color" class="form-control" required>
+                                <option value="red">Red</option>
+                                <option value="green">Green</option>
+                                <option value="blue">Blue</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Capture and Apply Filter</button>
+                    </form>
+
+                    <h3>Result:</h3>
+                    <img id="result" src="" alt="Filtered Image" class="img-fluid">
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------text to speak------------------- -->
+ 
+<!-- Modal -->
+<div class="modal fade" id="textToSpeakModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Text to Speak Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="textInput">Enter text to speak:</label>
+                    <input type="text" id="textInput" class="form-control">
+                </div>
+                <button id="speakButton" class="btn btn-primary">Speak</button>
+                <hr>
+                <h5>Speak to Text:</h5>
+                <button id="startSpeechRecognition" class="btn btn-primary">Start Speaking</button>
+                <p id="speechRecognitionResult" class="mt-3"></p>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ---------------------------------------swap image------------------------- -->
+    <div class="modal fade" id="swipimageModal">
+        <div class="modal-dialog animated-modal">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="card-title">Image Swip Application</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="uploadForm">
+                        <input type="file" name="image1" id="image1" accept="image/*" required>
+                        <input type="file" name="image2" id="image2" accept="image/*" required>
+                        <button type="submit">Swap Faces</button>
+                    </form>
+                    <div id="result">
+                        <img id="outputImage" src="" alt="Swapped Faces">
+                    </div>
+    
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+        <!-- --------------------------------Whatsapp Message---------------------------  -->
+        <div class="modal fade" id="WhatsappMsgModal">
+            <div class="modal-dialog animated-modal">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Whatsapp</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+    
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form action="/send" method="POST">
+                            <div class="form-group">
+                                <label for="number">Phone Number (with country code):</label>
+                                <input type="text" class="form-control" id="number" name="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                
+                    </div>
+    
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- ------------------------------custom image------------------------- -->
+        <!-- Custom Image Modal -->
+<div class="modal fade" id="CustomImgModal">
+    <div class="modal-dialog animated-modal">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Custom Image</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="image-form" action="/CustomImg" method="post">
+                    <div class="form-group">
+                        <label for="width">Width:</label>
+                        <input type="number" id="width" name="width" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Height:</label>
+                        <input type="number" id="height" name="height" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shape">Shape:</label>
+                        <select id="shape" name="shape" required>
+                            <option value="rectangle">Rectangle</option>
+                            <option value="line">Line</option>
+                            <option value="circle">Circle</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_x">Start X:</label>
+                        <input type="number" id="start_x" name="start_x" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_y">Start Y:</label>
+                        <input type="number" id="start_y" name="start_y" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_x">End X:</label>
+                        <input type="number" id="end_x" name="end_x" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_y">End Y:</label>
+                        <input type="number" id="end_y" name="end_y" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color_b">Blue:</label>
+                        <input type="number" id="color_b" name="color_b" min="0" max="255" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color_g">Green:</label>
+                        <input type="number" id="color_g" name="color_g" min="0" max="255" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color_r">Red:</label>
+                        <input type="number" id="color_r" name="color_r" min="0" max="255" required><br>
+                    </div>
+
+                    <div id="line-options" style="display: none;">
+                        <label for="thickness">Line Thickness:</label>
+                        <input type="number" id="thickness" name="thickness" value="1"><br>
+                    </div>
+
+                    <div id="circle-options" style="display: none;">
+                        <label for="radius">Circle Radius:</label>
+                        <input type="number" id="radius" name="radius" value="0"><br>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Generate Image</button>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Geolocation Modal -->
+ <div class="modal fade" id="GeolocationModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Geolocation</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="geolocationForm">
+                    <div class="form-group">
+                        <label for="address">Enter Address:</label>
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Enter address here" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="getGeolocation()">Get Location</button>
+                </form>
+                <div id="geoResult" class="mt-4"></div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Error Message Display -->
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        </div>
+
+
+
+
+        <!-- JS Scripts -->
+        <!-- jQuery (only include one version) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper.js (only include one version) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS (only include one version) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Socket.io -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+        <script src="/static/js/index.js"></script>
+        <script src="/static/js/aws_services.js"></script>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+<script>
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var fileName = document.getElementById("photo").files[0].name;
+    var nextSibling = e.target.nextElementSibling;
+    nextSibling.innerText = fileName;
+});
+
+$(document).ready(function() {
+    // Populate the region and instance type options on page load
+    $.getJSON('/get_options', function(data) {
+        var regionSelect = $('#region');
+        var instanceTypeSelect = $('#instance_type');
+
+        $.each(data.regions, function(index, region) {
+            regionSelect.append($('<option>').text(region).attr('value', region));
+        });
+
+        $.each(data.instance_types, function(index, type) {
+            instanceTypeSelect.append($('<option>').text(type).attr('value', type));
+        });
+
+        // Trigger change event to populate the image_id options based on the default region
+        regionSelect.change();
+    });
+
+    // Handle region change event to populate AMI IDs
+    $('#region').change(function() {
+        var region = $(this).val();
+        $('#image_id').empty();
+
+        $.getJSON('/get_amis', {region: region}, function(data) {
+            $.each(data, function(index, ami) {
+                $('#image_id').append($('<option>').text(ami.name + ' (' + ami.id + ')').attr('value', ami.id));
+            });
+        });
+    });
+});
+
+
+// $(document).ready(function() {
+//             $('#startDetection').click(function() {
+//                 $.ajax({
+//                     url: '/start_detection',
+//                     type: 'POST',
+//                     success: function(response) {
+//                         $('#statusMessage').html(`<div class="alert alert-success">${response.message}</div>`);
+//                     },
+//                     error: function(error) {
+//                         $('#statusMessage').html(`<div class="alert alert-danger">An error occurred: ${error.responseJSON.message}</div>`);
+//                     }
+//                 });
+//             });
+//         });
+
+$('#startDetectionfinger').click(function() {
+            $.post('/start_detection_finger', function(data) {
+                $('#message').text(data.message);
+            });
+        });
+
+
+
+        // --------------------------------Face Crop ------------------------------------- 
+        document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    let capturedImage = null;
+    let stream = null;
+
+    document.getElementById('start-camera-button').addEventListener('click', () => {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(st => {
+                stream = st;
+                video.srcObject = stream;
+                document.getElementById('video-container').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error accessing the camera:', error);
+            });
+    });
+
+    document.getElementById('capture-button').addEventListener('click', () => {
+        if (!video.srcObject) {
+            alert("Please start the camera first.");
+            return;
+        }
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        capturedImage = canvas.toDataURL('image/jpeg');
+    });
+
+    document.getElementById('apply-accessory-button').addEventListener('click', () => {
+        if (!capturedImage) {
+            alert("Please capture an image first.");
+            return;
+        }
+
+        const accessory = document.getElementById('accessory-select').value;
+
+        fetch('/add_accessory', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: capturedImage, accessory })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    const resultImage = new Image();
+                    resultImage.src = `data:image/jpeg;base64,${data.image}`;
+                    resultImage.onload = () => {
+                        context.drawImage(resultImage, 0, 0, canvas.width, canvas.height);
+                    }
+                    document.getElementById('save-button').disabled = false;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('save-button').addEventListener('click', () => {
+        if (!capturedImage) {
+            alert("Please capture an image first.");
+            return;
+        }
+
+        const link = document.createElement('a');
+        link.download = 'accessory_image.jpg';
+        link.href = canvas.toDataURL('image/jpeg');
+        link.click();
+    });
+});
+
+// ------------------------custom img-----------------------------
+document.getElementById('shape').addEventListener('change', function() {
+    const shape = this.value;
+    document.getElementById('line-options').style.display = (shape === 'line') ? 'block' : 'none';
+    document.getElementById('circle-options').style.display = (shape === 'circle') ? 'block' : 'none';
+});
+
+
+// -----------------------------------text to speak--------------------------------
+ // Text to Speech
+ document.getElementById('speakButton').addEventListener('click', function() {
+        const text = document.getElementById('textInput').value.trim();
+        if (text !== '') {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert('Please enter text to speak.');
+        }
+    });
+
+    // Speech Recognition
+    document.getElementById('startSpeechRecognition').addEventListener('click', function() {
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            alert('Speech Recognition API is not supported in this browser.');
+            return;
+        }
+
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.start();
+
+        recognition.onresult = function(event) {
+            const speechToText = event.results[0][0].transcript;
+            document.getElementById('speechRecognitionResult').innerText = 'You said: ' + speechToText;
+        };
+
+        recognition.onspeechend = function() {
+            recognition.stop();
+        };
+
+        recognition.onerror = function(event) {
+            document.getElementById('speechRecognitionResult').innerText = 'Error occurred: ' + event.error;
+        };
+    });
+    // ------------------------------face crop--------------------------------
+    function uploadImage() {
+            const formData = new FormData(document.getElementById('upload-form'));
+            fetch('/facecrop', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.output_image) {
+                    const resultDiv = document.getElementById('result');
+                    const outputImage = document.getElementById('output-image');
+                    const downloadLink = document.getElementById('download-link');
+
+                    resultDiv.style.display = 'block';
+                    outputImage.src = '/static/' + data.output_image;
+                    downloadLink.href = '/download/' + data.output_image;
+                    downloadLink.style.display = 'inline-block';
+                } else {
+                    document.getElementById('status-message').innerText = 'Face not detected or an error occurred.';
+                }
+            })
+            .catch(error => {
+                document.getElementById('status-message').innerText = 'Error: ' + error.message;
+            });
+        }
+
+
+// -----------------------------instagram----------------------------
+document.addEventListener('DOMContentLoaded', function() {
+        // Handle form submission
+        document.getElementById('insta-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            var formData = new FormData(this);
+            
+            fetch('/insta', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.success);
+                } else if (data.error) {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            });
+        });
+    });
+
+
+    $(document).ready(function(){
+        $('#s3Form').on('submit', function(e){
+            e.preventDefault();
+
+            $.ajax({
+                url: '/create_s3_bucket',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response){
+                    if(response.status === 'success') {
+                        alert(response.message);
+                        $('#S3Modal').modal('hide');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(error){
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+    });
+
+// -----Geolocation-----
+function getGeolocation() {
+            const address = $('#address').val();
+            if (!address) {
+                alert('Please enter an address');
+                return;
+            }
+
+            $.ajax({
+                url: '/geolocate',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ address: address }),
+                success: function(response) {
+                    $('#geoResult').html(`
+                        <h5>Geolocation Result:</h5>
+                        <p><strong>Address:</strong> ${response.address}</p>
+                        <p><strong>Latitude:</strong> ${response.latitude}</p>
+                        <p><strong>Longitude:</strong> ${response.longitude}</p>
+                    `);
+                },
+                error: function(xhr) {
+                    if (xhr.status === 403) {
+                        $('#geoResult').html('<p class="text-danger">Request was forbidden. Please check your request or try again later.</p>');
+                    } else {
+                        $('#geoResult').html(`<p class="text-danger">Error: ${xhr.responseJSON.error}</p>`);
+                    }
+                }
+            });
+        }
+</script>
+
+</html>

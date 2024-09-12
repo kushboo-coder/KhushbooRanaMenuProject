@@ -1,0 +1,336 @@
+/* Hide sections by default */
+.section-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.section-content.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.section-content.exiting {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+ /* General Reset */
+body, html {
+    margin: 0;
+    padding-top: 56px; /* Adjust based on the navbar height */
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Container for Responsive Grid */
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%; 
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed; /* Make the navbar fixed at the top */
+    width: 100%; 
+    overflow: hidden; 
+    background-color: #1f1f1f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    top: -38px;
+    width: 100%;
+    border-bottom: 1px solid #333;
+    z-index: 1000; /* Ensure it's above other content */
+    /* Optional: Add a shadow for better visibility */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.nav-link {
+    color: #f4f4f4 !important;
+    font-weight: 500; 
+    padding: 0.5rem 1rem; 
+    transition: color 0.3s ease; 
+    justify-content: center;
+    font-family: "Audiowide", sans-serif;
+    font-size: 20px;
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none; 
+    background: none;
+    background-color: white;
+}
+.angle{
+    color: white;
+    font-size: 30px;
+}
+/* Card Styles */
+.card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden; /* Prevent image overflow */
+}
+
+.card-img-top {
+    max-height: 250px;
+}
+
+
+/* Responsive Grid */
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin: 0; /* Remove default margin */
+}
+
+.col-lg-4, .col-md-4, .col-sm-6 {
+    flex: 1 0 100%; /* Full width on small screens */
+    max-width: 100%; /* Ensure no horizontal overflow */
+    padding: 0.5rem; /* Add spacing around columns */
+}
+
+
+.text-center {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text; 
+    color: transparent;
+}
+.signature{
+    margin-left: 5px;
+    font-family: 'Dancing Script', cursive;
+font-size: 24px;
+}
+.nav-link:hover{
+    color: #00d4ff !important;
+}
+
+@media (min-width: 576px) {
+    .col-sm-6 {
+        flex: 1 0 50%; /* 50% width on small screens and up */
+    }
+
+}
+
+@media (min-width: 768px) {
+    .col-md-4 {
+        flex: 1 0 33.33%; /* 33.33% width on medium screens and up */
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-4 {
+        flex: 1 0 33.33%; /* 33.33% width on large screens and up */
+    }
+}
+
+/* Custom styles */
+.header {
+    background-color: #f8f9fa;
+}
+
+.nav-menu .navbar-toggler-icon {
+    background-image: url('path/to/your/toggler-icon.png'); /* Optional: Customize your icon */
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}
+#video-container {
+            position: relative;
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        video, canvas {
+            width: 100%;
+            height: auto;
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #save-button {
+            margin-top: 10px;
+        }
+
+        /* Card Hover Animation */
+.animated-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Animation */
+.animated-modal .modal-content {
+    animation: slideUp 0.5s, fadeIn 0.5s;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Background */
+.modal-content {
+    background: #fdfbfb; /* Light grey background */
+    border: none;
+    border-radius: 15px;
+    color: #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Modal Header */
+.modal-header {
+    border-bottom: none;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+.close {
+    color: white;
+    opacity: 1;
+    font-size: 1.2rem;
+    border: none;
+    background: transparent;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 20px 30px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    background: #fff;
+    border: 2px solid #ff7e5f;
+    color: #495057;
+    border-radius: 5px;
+    /* padding: 10px; */
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #feb47b;
+}
+
+.form-control::placeholder {
+    color: #6c757d;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #3194c9;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-danger:hover {
+    background-color: #ff1e3c;
+    transform: translateY(-2px);
+}
+
+/* Alert Styles */
+#callAlertPlaceholder {
+    display: none;
+    background-color: #ffeb3b;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Modal Footer */
+.modal-footer {
+    border-top: none;
+    justify-content: center;
+}
+
+/* Form Label Styles */
+.form-group label {
+    font-weight: bold;
+    color: #495057;
+}
+
+
+
+
+
+/* For Card Image */
+.card-img-top{
+    height: 300px;
+}
+
+
+#region{
+    top: 5px;
+}

@@ -1,0 +1,534 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background-color: #111827; /* Tailwind's bg-gray-900 equivalent */
+    color: #ffffff; /* White text */
+    font-family: 'Arial', sans-serif; /* Use a clean, readable font */
+}
+
+/* Ensure all text across the site inherits the white color */
+h1, h2, h3, h4, h5, h6, p, a, span, div {
+    color: inherit;
+}
+
+/* Optional: Add some padding to the body for better spacing */
+body {
+    padding: 20px;
+}
+
+
+/* Container for Responsive Grid */
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%; /* Ensure container takes full width */
+}
+
+/* Navbar Styles */
+.navbar {
+    position: relative; 
+    width: 100%; 
+    height: 10%;
+    backdrop-filter: blur(10px);
+}
+
+/* Nav Link Styles */
+.nav-link {
+    color: #4CAF50; /* Fresh green color */
+    font-weight: 600; 
+    padding: 0.5rem 1rem; 
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and transform transition */
+    justify-content: center;
+    font-family: "Audiowide", sans-serif;
+    font-size: 20px;
+}
+
+/* Hover Effect for Nav Links */
+.nav-link:hover {
+    color: #FF4500; /* Vibrant orange-red color on hover */
+    transform: scale(1.1); /* Slightly enlarge the link on hover */
+}
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.8); /* More opaque on scroll */
+    backdrop-filter: blur(5px); /* Reduce blur on scroll */
+}
+
+
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none; 
+    background: none;
+    background-color: white;
+}
+.navbar-toggler-icon {
+    width: 30px; 
+    height: 30px; 
+   
+}
+.angle{
+    /* color:black; */
+    font-size: 30px;
+}
+
+/* Card Styles */
+.card {
+    width: 100%; /* Make card width responsive */
+    max-width: 100%; /* Ensure card doesn't overflow */
+    margin: 0 auto; /* Center card horizontally */ 
+}
+
+/* Responsive Grid */
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin: 0; /* Remove default margin */
+}
+
+.col-lg-4, .col-md-4, .col-sm-6 {
+    flex: 1 0 100%; /* Full width on small screens */
+    max-width: 100%; /* Ensure no horizontal overflow */
+    padding: 0.5rem; /* Add spacing around columns */
+}
+
+
+.text-center {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+@media (min-width: 576px) {
+    .col-sm-6 {
+        flex: 1 0 50%; /* 50% width on small screens and up */
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-4 {
+        flex: 1 0 33.33%; /* 33.33% width on medium screens and up */
+    }
+    .navbar-collapse{
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-4 {
+        flex: 1 0 33.33%; /* 33.33% width on large screens and up */
+    }
+}
+
+/* Custom styles */
+/* .header {
+    background-color: #f8f9fa;
+} */
+
+.nav-menu .navbar-toggler-icon {
+    background-image: url('path/to/your/toggler-icon.png'); /* Optional: Cutomize your icon */
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    
+}
+
+
+/* Custom styles for Footer */
+
+/* Footer Styles */
+.main-footer-section {
+    background-color: #343a40; /* Change as needed */
+    color: #fff;
+    padding: 2rem 0;
+}
+
+.contact-details {
+    padding: 2rem 0;
+}
+
+.contact-div {
+    background-color: #495057; /* Change as needed */
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.contact-div .icon-div img {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+}
+
+.container hr {
+    border-top: 1px solid #6c757d; /* Adjust as needed */
+}
+
+.icon-span, .icon-div {
+    background-color: #495057; /* Adjust as needed */
+}
+
+.icon-span i {
+    color: #fff;
+    font-size: 20px; /* Adjust as needed */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 767.98px) {
+    .contact-div {
+        padding: 1rem;
+    }
+    
+    .contact-div .icon-div img {
+        width: 40px; /* Adjust for smaller screens */
+        height: 40px; /* Adjust for smaller screens */
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .row {
+        margin: 0;
+    }
+    
+    .col-lg-4, .col-md-4, .col-sm-6 {
+        flex: 1 0 100%; /* Full width on small screens */
+        max-width: 100%;
+    }
+    
+    .d-flex {
+        flex-direction: column; /* Stack icons vertically on smaller screens */
+    }
+    
+    .icon-span {
+        margin-bottom: 1rem; /* Adjust spacing for mobile */
+    }
+}
+
+/* Additional Styles for Larger Screens */
+@media (min-width: 768px) {
+    .contact-div {
+        padding: 2rem;
+    }
+    
+    .contact-div .icon-div img {
+        width: 60px; /* Adjust for medium screens */
+        height: 60px; /* Adjust for medium screens */
+    }
+}
+
+/* Adjusting icons in footer for larger screens */
+@media (min-width: 992px) {
+    .icon-span {
+        margin-bottom: 0;
+    }
+    
+    .d-flex {
+        flex-direction: row; /* Align icons horizontally on larger screens */
+    }
+}
+
+/* Custom Style for Contact Me */
+
+/* Common Section Styles */
+.common-section {
+    padding: 2rem 0;
+}
+
+.bg-color {
+    background-color: #343a40; /* Adjust color as needed */
+}
+
+.contact-section .custom-shape-divider-top {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 120px;
+}
+
+.common-title {
+    margin-bottom: 2rem;
+}
+
+.common-heading {
+    font-size: 2rem; /* Adjust for responsive design */
+}
+
+.form-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 0.25rem;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 767.98px) {
+    .common-heading {
+        font-size: 1.5rem; /* Smaller heading on mobile */
+    }
+    
+    .form-section {
+        padding: 0 1rem; /* Add padding for mobile */
+    }
+    
+    .form-control {
+        font-size: 1rem; /* Adjust font size */
+    }
+    
+    .btn-primary {
+        font-size: 1rem; /* Adjust button font size */
+    }
+}
+
+
+/* Custom Style for Top Section */
+/* Container */
+.container {
+    max-width: 1200px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+/* Heading Styles */
+.heading h1 {
+    font-size: 2.5rem; /* Large text for large screens */
+    margin-bottom: 1rem;
+}
+
+/* Paragraph Styles */
+.paragraph-main {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Social Icons */
+.social {
+    margin-top: 1rem;
+}
+
+.social a {
+    margin: 0 0.5rem;
+    color: inherit;
+}
+
+.social i {
+    transition: color 0.3s ease;
+}
+
+
+/* Button Styles */
+#button {
+    margin-top: 1rem;
+}
+
+/* Image Styles */
+/* .image-main {
+    width: 50%;
+    height: 50%;
+    margin-left: 242px;
+
+} */
+
+/* Responsive Styles */
+@media (max-width: 1199.98px) {
+    .heading h1 {
+        font-size: 2.2rem; /* Slightly smaller heading text for medium-large screens */
+    }
+
+    .paragraph-main {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .heading h1 {
+        font-size: 2rem; /* Smaller heading text for medium screens */
+    }
+
+    .paragraph-main {
+        font-size: 1rem; /* Slightly smaller text for medium screens */
+    }
+
+    .social {
+        text-align: center; /* Center social icons on medium screens */
+    }
+
+    .social a {
+        margin: 0.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .heading h1 {
+        font-size: 1.8rem; /* Smaller heading text for small screens */
+    }
+
+    .paragraph-main {
+        font-size: 0.9rem; /* Smaller paragraph text on small screens */
+    }
+
+    .social a {
+        margin: 0.25rem; /* Reduce margin between icons on small screens */
+    }
+
+    .btn-primary {
+        width: 100%; /* Full-width button on small screens */
+    }
+}
+
+@media (max-width: 575.98px) {
+    .heading h1 {
+        font-size: 1.6rem; /* Smaller heading text for extra small screens */
+    }
+
+    .paragraph-main {
+        font-size: 0.8rem; /* Smaller paragraph text on extra small screens */
+    }
+
+    .social a {
+        margin: 0.25rem; /* Adjust margin for extra small screens */
+    }
+
+    .btn-primary {
+        padding: 0.75rem; /* Adjust button padding on extra small screens */
+    }
+    
+}
+.email-icon {
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+}
+
+.email-icon img {
+    width: 46px;
+    height: 46px;
+    margin-top: -16px;
+}
+
+/* General Styles */
+.services-section {
+    /* background-color: #f9f9f9; */
+    padding: 60px 0;
+}
+
+.common-heading {
+    font-size: 2.5rem;
+    /* color: #333; */
+    margin-bottom: 20px;
+}
+
+.card-box {
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-box img {
+    margin-bottom: 20px;
+}
+
+.card-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-box p {
+    font-size: 1rem;
+    /* color: #666; */
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-box {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Delayed Animations for Each Column */
+.col-xxl-4:nth-child(1) .card-box {
+    animation-delay: 0.2s;
+}
+
+.col-xxl-4:nth-child(2) .card-box {
+    animation-delay: 0.4s;
+}
+
+.col-xxl-4:nth-child(3) .card-box {
+    animation-delay: 0.6s;
+}
+
+.col-xxl-4:nth-child(4) .card-box {
+    animation-delay: 0.8s;
+}
+
+.col-xxl-4:nth-child(5) .card-box {
+    animation-delay: 1s;
+}
+
+.col-xxl-4:nth-child(6) .card-box {
+    animation-delay: 1.2s;
+}
+
+.pe-3{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.heading h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    color: transparent;
+}
